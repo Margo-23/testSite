@@ -1,38 +1,414 @@
-.App {
-  text-align: center;
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+font-family: 'Nunito', sans-serif;
+min-height: 100vh;
+scroll-behavior: smooth;
+text-rendering: optimizeSpeed;
+color: #000;
+background-color: #F8F8F8;
+font-weight: 400;
+font-size: 16px;
+line-height: 26px;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+max-width: 100%;
+display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+font: inherit;
+}
+a{
+  text-decoration: none;
+}
+
+.container{
+  max-width: 1170px;
+  padding: 0;
+  margin: 0 auto;
+}
+.button{
+  width: 100px;
+  height: 34px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background: #F4E041;
+  border-radius: 80px;
+  font-weight: 400;
+font-size: 16px;
+line-height: 26px;
+cursor: pointer;
+transition: all .3s;
+}
+.title{
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 400;
+}
+.button:hover{
+  background: #FFE302;
+}
+.header{
+  margin-bottom: 140px;  
+}
+.header__top{
+  background-color: #fff;
+}
+.header__wrapper{
+  padding: 13px 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.header__buttons{
+display: flex;
+justify-content: end;
+align-items: center;
+}
+.header__btn:first-child{
+  margin-right: 10px;
+}
+.header__content{
+  position: relative;  
+}
+.header__banner{
+  width: 100%;
+  height: auto;
+  max-height: 650px;
+}
+.header__shadow{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))
+}
+.header__info{
+  width: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  
+}
+.header__title{
+  margin-bottom: 21px;
+}
+.header__text{
+  margin-bottom: 32px;
+}
+.header__content-btn{
+  margin: 0 auto;
 }
 
-.App-link {
-  color: #61dafb;
+.getBlock{
+  margin-bottom: 140px;
+}
+.getBlock__users{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 29px;
+  margin-bottom: 50px;
+}
+.getBlock__title{
+  text-align: center;
+  font-weight: 400;
+font-size: 40px;
+line-height: 40px;
+margin-bottom: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.user{
+  padding: 20px;
+  background: #FFFFFF;
+border-radius: 10px;
+  text-align: center;
+  overflow-x: hidden;
+}
+.user__photo-img{
+  width: 70px;
+height: 70px;
+border-radius: 50%;
+  margin: 0 auto 20px auto;
+
+}
+
+.user__name{
+  margin-bottom: 20px;
+}
+.getBlock__users-btn{
+  width: 120px;
+  margin: 0 auto;
+  border: none;
+
+}
+
+.postBlock__title{
+  text-align: center;
+  font-weight: 400;
+font-size: 40px;
+line-height: 40px;
+margin-bottom: 50px;
+}
+.postBlock__box{
+  position: relative;
+  margin: 0 auto;
+  width: max-content;
+}
+.postBlock__error{
+  position: absolute;
+  bottom: -16px;
+  left: 10px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #CB3D40;
+  z-index: 2;
+  width: 100%;
+  display: block;
+  background-color: #F8F8F8;
+}
+.postBlock__helper{
+  position: absolute;
+  bottom: -16px;
+  left: 10px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #7E7E7E;
+  z-index: 1;
+}
+
+.postBlock__input{
+  width: 380px;
+  height: 54px;
+  padding: 14px 16px;
+  border: 1px solid #D0CFCF;
+  border-radius: 4px;
+  margin: 0 auto 50px auto;
+  display: block;
+  overflow: visible;
+}
+.postBlock__input::placeholder{
+  color: #7E7E7E;
+  z-index: 100;
+}
+.postBlock__input--phone{
+  margin: 0 auto 43px auto;
+}
+.postBlock__radio{
+  width: 380px;
+  margin: 0 auto 47px auto;
+}
+.postBlock__radio-title{
+  margin-bottom: 11px;
+}
+.postBlock__radio-input{
+  display: none;
+}
+.postBlock__radio-label{
+  display: flex;
+  justify-content: start;
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 7px;
+}
+.postBlock__radio-label::after{
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 0;
+  border: 1px solid #D0CFCF;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.postBlock__radio-label.postBlock__radio-label--active::after{
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 0;
+  border: 1px solid #00BDD3;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.postBlock__radio-label.postBlock__radio-label--active::before{
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 5px;
+  background-color: #00BDD3;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.postBlock__file-input{
+  display: none;
+}
+.postBlock__file-label{
+  width: 380px;
+  height: max-content;
+  min-height: 54px;
+  padding: 14px 16px 14px 99px;
+  border: 1px solid #D0CFCF;
+  border-radius: 4px;
+  margin: 0 auto 50px auto;
+  display: block;
+  position: relative;
+  color: #7E7E7E;
+  margin-bottom: 50px;
+}
+.postBlock__file-bnt{
+  position: absolute;
+  height: calc(100% + 2px);
+  width: 83px;
+  top: -1px;
+  left: -1px;
+  border: 1px solid black;
+  border-radius: 4px 0 0 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+.postBlock__btn{
+  background: #B4B4B4;
+  color: #fff;
+  border: none;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+.postBlock__btn:hover{
+  background: #B4B4B4;
+}
+.postBlock__btn--valid{
+  background: #F4E041;
+}
+.postBlock__btn--valid:hover{
+  background: #FFE302;
+}
+
+
+@media(max-width:1024px){
+  .header__wrapper{
+    padding-left: 60px;
+    padding-right: 60px;
   }
-  to {
-    transform: rotate(360deg);
+  .getBlock__users{
+    padding-left: 60px;
+    padding-right: 60px;
   }
+}
+
+@media(max-width:768px){
+  .header__wrapper{
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .header__banner{
+    max-height: 500px;
+    min-height: 500px;
+  }
+  .getBlock__users{
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media(max-width:360px){
+  .header__wrapper{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .header__info{
+    top: 40px;
+    transform: translateX(-50%);
+  }
+  .getBlock__users{
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .header__info {
+    width: 100%;
+    padding: 0 16px;
+  }
+  .getBlock__title, .postBlock__title{
+    padding: 0 16px;
+  }
+  .postBlock{
+    padding: 0 16px;
+  }
+  .postBlock__box, .postBlock__radio, .postBlock__input, .postBlock__file-label{
+    width: 100%;
+  }
+
+}
+
+.error{
+  border-color: red;
 }
